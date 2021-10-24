@@ -16,12 +16,6 @@ export const environment = {
   backendOauth2ClientHelloEndPoint: oauth2ClientHelloEndPoint,
   backendOaut2ClientGetgoogleuserinfoEndPoint: oaut2ClientGetgoogleuserinfoEndPoint,
 
-  /*
-  homeURL: "https://localhost:4200",
-  oauth2ClientBaseURL: "https://localhost:8080",
-  oauth2ClientBaseContext_Path: "/googleSocialWebClient",
-  oauth2ClientHelloEndPoint: "/hello"
-  */
   backEndOauth2ClientHelloEndPointURL: oauth2ClientBaseURL + oauth2ClientBaseContextPath + oauth2ClientHelloEndPoint,
   backendOaut2ClientGetgoogleuserinfoEndPointURL: oauth2ClientBaseURL + oauth2ClientBaseContextPath + oaut2ClientGetgoogleuserinfoEndPoint
 

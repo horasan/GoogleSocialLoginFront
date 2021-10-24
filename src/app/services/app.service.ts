@@ -12,11 +12,8 @@ import { environment } from 'src/environments/environment';
 
 @Injectable()
 export class AppService {
-  //public googleUserPublicInfo: any;
   public googleUserPublicInfo: GoogleUser;
 
-   //public clientId = '169035187152-ir059f2fola3l2mokvuc6ufvikc1p1qs.apps.googleusercontent.com'; //'newClient';
-   //public redirectUri = 'http://localhost:4200'; //'http://localhost:8089/';
    public socialEventItemList: SocialEventItem[] = [];
   constructor( private injector: Injector,   private _http: HttpClient){
    
@@ -64,13 +61,6 @@ export class AppService {
       
 
   }
-/*
-  getCookieByName(name: string) {
-    if(Cookie.check(name)) {
-      return Cookie.get(name);
-    }
-  }
-*/
   getSocialEventItemList() {
     if (Cookie.check('social_event_list')) {
       var json_str = Cookie.get('social_event_list');
@@ -87,15 +77,14 @@ export class AppService {
     this.googleUserPublicInfo = new GoogleUser("-", "-", "-", "-", "-", "-", false, "-");
     Cookie.delete("loggedin_email");
     Cookie.delete("social_event_list");
-    let logoutURL = environment.frontEndHomeURL; //"https://localhost:4200";
+    let logoutURL = environment.frontEndHomeURL;
     window.location.href = logoutURL;
   }
 
   async sayHello() {
     
-    var helloURL = environment.backEndOauth2ClientHelloEndPointURL; // "https://localhost:8080/googleSocialWebClient/hello";
+    var helloURL = environment.backEndOauth2ClientHelloEndPointURL; 
     
-
     const data = await this._http.get<GoogleUser>(helloURL).toPromise();
 
     var googleUser  = new GoogleUser(data.sub, data.name, data.given_name,
@@ -110,27 +99,8 @@ export class AppService {
 
   async retrieveGoogleUserInfo(){
 
-/*
-    var helloURL = "https://localhost:8080/rizaSocialWebClient/hello";
-    this._http.get(helloURL)
-      .subscribe((res: any) => {
-        //this.menuItemFromApi = res;     
-        console.log(res);
-      }, errorRes => {
-        if (errorRes.status == 401) {
-          this.errorMessage = 'Unauthenticated!';
-        }
-      });
-
-*/
-/*
-    let params = new URLSearchParams();   
-    
-    let headers = new HttpHeaders({'Content-type': 'application/x-www-form-urlencoded; charset=utf-8'});
-  */  
     var googleUserInfoEndPointURL = environment.backendOaut2ClientGetgoogleuserinfoEndPointURL;
 
-    //const data = await this._http.get<GoogleUser>('https://localhost:8080/googleSocialWebClient/getgoogleuserinfo').toPromise();
     const data = await this._http.get<GoogleUser>(googleUserInfoEndPointURL).toPromise();
 
     this.googleUserPublicInfo = new GoogleUser(data.sub, data.name, data.given_name,

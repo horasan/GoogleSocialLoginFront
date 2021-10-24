@@ -25,6 +25,7 @@ export class Home3Component implements OnInit {
   public helloMessage: String;
   constructor(private _service: AppService, private route: ActivatedRoute, private _http: HttpClient) { }
 
+  
   onshowSocialEventLogTableChange(e) {
     this.showSocialEventLogTable = e.target.checked;
   }
